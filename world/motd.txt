@@ -1,4 +1,4 @@
 @9Welcome to Slackraft!
 @9https://github.com/135yshr/slackraft
 @cWarning: Use on your local machine only
-@cDockercraft is not safe for use on production servers
+@cSlackraft is not safe for use on production servers
