@@ -1,5 +1,9 @@
 FROM golang:1.5.1
 
+# Copy Go code and install applications
+COPY ./go /go
+RUN cd /go/src/goproxy; go install
+
 # Download Cuberite server (Minecraft C++ server)
 # and load up a special empty world for Dockercraft
 WORKDIR /srv
