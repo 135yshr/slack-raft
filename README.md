@@ -5,12 +5,12 @@ Slackraft
 How to run Slackraft
 ----------------------
 
-1. Install Minecraft [minecraft.net](https://github.com/135yshr/dockercraft)
+1. Install Minecraft [minecraft.net](https://minecraft.net)
 
 2. Pull or build Dockercraft image:
 
     ```
-    git clone https://github.com/135yshr/slackcraft.git
+    git clone https://github.com/135yshr/slackraft.git
     cd slackraft    
     git checkout -b sora1.1 refs/tags/sora1.1
     docker build -t 135yshr/slackraft .
