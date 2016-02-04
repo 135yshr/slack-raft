@@ -29,3 +29,7 @@ How to run Slackraft
 
 5. Join Server!
 
+License
+--------
+
+Based on the [Dockercraft](https://github.com/docker/dockercraft) has created a Slackraft.
