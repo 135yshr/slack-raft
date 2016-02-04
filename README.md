@@ -11,7 +11,8 @@ How to run Slackraft
 
     ```
     git clone https://github.com/135yshr/slackcraft.git
-    cd slackraft
+    cd slackraft    
+    git checkout -b sora1.1 refs/tags/sora1.1
     docker build -t 135yshr/slackraft .
     ```
 
@@ -31,6 +32,7 @@ How to run Slackraft
     If you're using [Docker Machine](https://docs.docker.com/machine/install-machine/): `docker-machine ip <machine_name>`
 
 5. Join Server!
+
 
 License
 --------
