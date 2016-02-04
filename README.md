@@ -10,7 +10,7 @@ How to run Slackraft
 2. Pull or build Dockercraft image:
 
     ```
-    git clone git@github.com:135yshr/slackcraft.git
+    git clone https://github.com/135yshr/slackcraft.git
     cd slackraft
     docker build -t 135yshr/slackraft .
     ```
