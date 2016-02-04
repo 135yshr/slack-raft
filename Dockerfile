@@ -2,6 +2,7 @@ FROM golang:1.5.1
 
 # Copy Go code and install applications
 COPY ./go /go
+RUN go get github.com/135yshr/goracom
 RUN cd /go/src/goproxy; go install
 
 # Download Cuberite server (Minecraft C++ server)
