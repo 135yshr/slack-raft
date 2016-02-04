@@ -54,20 +54,22 @@ func listContainers(w http.ResponseWriter, r *http.Request) {
 	pass := os.Getenv("SORACOM_PASSWORD")
 	c, _ := goracom.NewClient(email, pass)
 	s := c.NewSubscriber()
-	ss, _ := s.Sim("440103088701722")
+	ss, _ := s.FindAll()
 
-	go func() {
-		data := url.Values{
-			"action":    {"containerInfos"},
-			"id":        {ss.IMSI},
-			"name":      {ss.Tags["name"]},
-			"imageRepo": {ss.APN},
-			"imageTag":  {ss.ModuleType},
-			"running":   {strconv.FormatBool(ss.Status == "active")},
-		}
+	for _, sim := range *ss {
+		go func() {
+			data := url.Values{
+				"action":    {"containerInfos"},
+				"id":        {sim.IMSI},
+				"name":      {sim.Tags["name"]},
+				"imageRepo": {sim.SpeedClass},
+				"imageTag":  {sim.ModuleType},
+				"running":   {strconv.FormatBool(sim.Status == "active")},
+			}
 
-		CuberiteServerRequest(data)
-	}()
+			CuberiteServerRequest(data)
+		}()
+	}
 }
 
 // CuberiteServerRequest send a POST request that will be handled
