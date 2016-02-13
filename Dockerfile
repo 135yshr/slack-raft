@@ -1,5 +1,8 @@
 FROM golang:1.5.1
 
+RUN export SORACOM_EMAIL={USER_EMAIL}
+RUN export SORACOM_PASSWORD={PASSWORD}
+
 # Copy Go code and install applications
 COPY ./goproxy /go/src/goproxy
 RUN go get github.com/135yshr/goracom
