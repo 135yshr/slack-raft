@@ -36,7 +36,7 @@ function Initialize(Plugin)
 
 	-- Command Bindings
 
-	cPluginManager.BindCommand("/slack", "*", SlackCommand, " - slack CLI commands")
+	cPluginManager.BindCommand("/nical", "*", NicoCalCommand, " - slack CLI commands")
 
 	Plugin:AddWebTab("Slack",HandleRequest_Slack)
 
@@ -187,8 +187,8 @@ function WorldStarted()
 
 	index = -1
 	calendar = NewCalendar()
-	calendar:init(4, 5)
-	calendar:setInfos(1)
+	calendar:init(4, 5, 1)
+	calendar:addUser("135yshr")
 	calendar:display()
 
 	if index == -1
@@ -263,32 +263,39 @@ function OnChunkGenerating(World, ChunkX, ChunkZ, ChunkDesc)
 end
 
 
-function SlackCommand(Split, Player)
+function NicoCalCommand(Split, Player)
 
 	if table.getn(Split) > 0
 	then
 
 		LOG("Split[1]: " .. Split[1])
 
-		if Split[1] == "/slack"
+		if Split[1] == "/nical"
 		then
-			if table.getn(Split) > 1
+			if 3 < table.getn(Split)
 			then
-				if Split[2] == "pull" or Split[2] == "create" or Split[2] == "run" or Split[2] == "stop" or Split[2] == "rm" or Split[2] == "rmi" or Split[2] == "start" or Split[2] == "kill"
+				if Split[2] == "feel"
 				then
-					-- force detach when running a container
-					if Split[2] == "run"
+					month = tonumber(Split[3])
+					name = Split[4]
+					day = tonumber(Split[5])
+					feel = tonumber(Split[6])
+
+					cal = Calendars[month]
+					if cal == nil
 					then
-						table.insert(Split,3,"-d")
+						LOG("failed: " .. tostring(month))
+						return
 					end
-
-					EntireCommand = table.concat(Split, "+")
-					-- remove '/' at the beginning
-					command = string.sub(EntireCommand, 2, -1)
-					
-					r = os.execute("goproxy exec?cmd=" .. command)
-
-					LOG("executed: " .. command .. " -> " .. tostring(r))
+					LOG("executed: update_feel " .. tostring(month) .. " " .. name .. " " .. tostring(day) .. " ".. tostring(feel))
+					cal:updateFeel(name, day, feel)
+				elseif Split[2] == "add"
+				then
+					month = tonumber(Split[3])
+					name = Split[4]
+					LOG("executed: add_user " ..  name)
+					cal = Calendars[month]
+					cal:addUser(name)
 				end
 			end
 		end
