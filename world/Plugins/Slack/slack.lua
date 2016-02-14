@@ -3,6 +3,7 @@
 UpdateQueue = nil
 -- array of container objects
 Containers = {}
+Calendars = {}
 -- 
 SignsToUpdate = {}
 
@@ -176,15 +177,26 @@ end
 --
 function WorldStarted()
 	y = GROUND_LEVEL
-	-- just enough to fit one container
-	-- then it should be dynamic
 	for x= GROUND_MIN_X, GROUND_MAX_X
 	do
 		for z=GROUND_MIN_Z,GROUND_MAX_Z
 		do
 			setBlock(UpdateQueue,x,y,z,E_BLOCK_STONE,E_META_STONE_STONE)
 		end
-	end	
+	end
+
+	index = -1
+	calendar = NewCalendar()
+	calendar:init(4, 5)
+	calendar:setInfos(1)
+	calendar:display()
+
+	if index == -1
+		then
+			table.insert(Calendars, calendar)
+		else
+			Calendars[index] = calendar
+	end
 end
 
 --
@@ -194,8 +206,6 @@ function PlayerJoined(Player)
 
 	-- refresh containers
 	LOG("player joined")
-	r = os.execute("goproxy containers")
-	LOG("executed: goproxy containers -> " .. tostring(r))
 end
 
 -- 
