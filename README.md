@@ -11,18 +11,13 @@ How to run Slackraft
 
     ```
     git clone https://github.com/135yshr/slackraft.git
-    cd slackraft    
-    git checkout -b sora1.1 refs/tags/sora1.1
-    docker build -t 135yshr/slackraft .
+    docker build -t 135yshr/slackraft slackraft
     ```
 
 3. Run Dockercraft container:
 
     ```
-    docker run -t -i -d -p 25565:25565 \
-        -e SORACOM_EMAIL=xxxx@example.com \
-        -e SORACOM_PASSWORD=xxxxx \
-        135yshr/slackraft
+    docker run -t -i -d -p 25565:25565 135yshr/slackraft
     ```
 
 4. Open Minecraft > Multiplayer > Add Server
