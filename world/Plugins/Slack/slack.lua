@@ -186,6 +186,9 @@ function WorldStarted()
 	calendar:addUser("135yshr")
 	calendar:display()
 	table.insert(Calendars, calendar)
+
+	task=TaskContainer.new("first task", 1, 10)
+	task:display()
 end
 
 --
