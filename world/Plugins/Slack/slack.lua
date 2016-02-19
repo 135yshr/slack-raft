@@ -176,6 +176,7 @@ end
 
 --
 function WorldStarted()
+	math.randomseed(os.time())
 	LOG("world started")
 	calendar = NewCalendar()
 	calendar:init(10, GROUND_LEVEL, 10, 1)
@@ -187,8 +188,19 @@ function WorldStarted()
 	calendar:display()
 	table.insert(Calendars, calendar)
 
-	task=TaskContainer.new("first task", 1, 10)
-	task:display()
+	tasks = {}
+	for no=1, 10 do
+		priority=math.random(5)
+		cost=math.random(10)
+		task=TaskContainer.new("task "..tostring(no), priority, cost)
+		if tasks[priority] == nil then
+			tasks[priority] = 0
+		else
+			tasks[priority]=tasks[priority]+1
+		end
+		task.offset=tasks[priority]
+		task:display()
+	end
 end
 
 --
