@@ -24,5 +24,5 @@ GROUND_MAX_Z = CONTAINER_START_Z + 20
 -- in one single tick, for performance issues.
 MAX_BLOCK_UPDATE_PER_TICK = 50
 
-TASK_START_X = 50
+TASK_START_X = 0
 TASK_START_Z = 50

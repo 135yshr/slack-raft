@@ -4,7 +4,7 @@ function TaskContainer.new(name,priority,cost)
 	local t = {
 		x=TASK_START_X,
 		y=GROUND_LEVEL,
-		z=TASK_START_Z,
+		z=TASK_START_Z+priority*7,
 		name=name,
 		priority=priority,
 		cost=cost
@@ -34,7 +34,7 @@ function TaskContainer.display(self)
 		end
 		setBlock(UpdateQueue, self.x, self.y+py, self.z, E_BLOCK_TNT, E_META_STONE_STONE)
 	end
-	setBlock(UpdateQueue, self.x-1, self.y+self.cost+1, self.z+2, E_BLOCK_WALLSIGN, E_META_CHEST_FACING_ZP)
-	updateSign(UpdateQueue, self.x-1, self.y+self.cost+1, self.z+2, "", self.name, "", "", 2)
-	setBlock(UpdateQueue, self.x, self.y+self.cost+1, self.z+2, E_BLOCK_STONE_BUTTON, E_BLOCK_BUTTON_ZP)
+	setBlock(UpdateQueue, self.x+1, self.y+self.cost+1, self.z-2, E_BLOCK_WALLSIGN, E_META_CHEST_FACING_ZM)
+	updateSign(UpdateQueue, self.x+1, self.y+self.cost+1, self.z-2, "", self.name, "", "", 2)
+	setBlock(UpdateQueue, self.x, self.y+self.cost+1, self.z-2, E_BLOCK_STONE_BUTTON, E_BLOCK_BUTTON_ZM)
 end
