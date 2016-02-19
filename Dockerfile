@@ -1,7 +1,8 @@
 FROM golang:1.5.1
 
 # Copy Go code and install applications
-COPY ./go /go
+COPY ./goproxy /go/src/goproxy
+RUN go get github.com/Sirupsen/logrus
 RUN go get github.com/135yshr/goracom
 RUN cd /go/src/goproxy; go install
 
