@@ -4,7 +4,7 @@ function TaskContainer.new(name,priority,cost)
 	local t = {
 		x=TASK_START_X,
 		y=GROUND_LEVEL,
-		z=TASK_START_Z+priority*7,
+		z=TASK_START_Z+(priority-1)*7,
 		name=name,
 		priority=priority,
 		cost=cost
