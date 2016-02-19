@@ -4,6 +4,7 @@ UpdateQueue = nil
 -- array of container objects
 Containers = {}
 Calendars = {}
+Tasks = {}
 -- 
 SignsToUpdate = {}
 
@@ -37,6 +38,7 @@ function Initialize(Plugin)
 	-- Command Bindings
 
 	cPluginManager.BindCommand("/nical", "*", NicoCalCommand, " - nico nico calendar CLI commands")
+	cPluginManager.BindCommand("/task", "*", TaskTowerCommand, " - task CLI commands")
 
 	Plugin:AddWebTab("Slack",HandleRequest_Slack)
 
@@ -176,6 +178,7 @@ end
 
 --
 function WorldStarted()
+	math.randomseed(os.time())
 	LOG("world started")
 	calendar = NewCalendar()
 	calendar:init(10, GROUND_LEVEL, 10, 1)
@@ -293,7 +296,36 @@ function NicoCalCommand(Split, Player)
 	return true
 end
 
+function TaskTowerCommand(split, player)
+	if table.getn(split) > 0
+	then
 
+		LOG("Split[1]: " .. split[1])
+
+		if split[1] == "/task" then
+			if 4 < table.getn(split) then
+				if split[2] == "add" then
+					name = split[3]
+					priority = tonumber(split[4])
+					cost = tonumber(split[5])
+
+					LOG("/task add " .. name .. " " .. split[4] .. " " .. split[5])
+
+					if Tasks[priority] == nil then
+						Tasks[priority] = 0
+					else
+						Tasks[priority]=Tasks[priority]+1
+					end
+					task=TaskContainer.new(name, priority, cost)
+					task.offset=Tasks[priority]
+					task:display()
+				end
+			end
+		end
+	end
+
+	return true
+end
 
 function HandleRequest_Slack(Request)
 	
