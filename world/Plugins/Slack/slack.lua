@@ -36,7 +36,7 @@ function Initialize(Plugin)
 
 	-- Command Bindings
 
-	cPluginManager.BindCommand("/nical", "*", NicoCalCommand, " - slack CLI commands")
+	cPluginManager.BindCommand("/nical", "*", NicoCalCommand, " - nico nico calendar CLI commands")
 
 	Plugin:AddWebTab("Slack",HandleRequest_Slack)
 
@@ -176,27 +176,16 @@ end
 
 --
 function WorldStarted()
-	y = GROUND_LEVEL
-	for x= GROUND_MIN_X, GROUND_MAX_X
-	do
-		for z=GROUND_MIN_Z,GROUND_MAX_Z
-		do
-			setBlock(UpdateQueue,x,y,z,E_BLOCK_STONE,E_META_STONE_STONE)
-		end
-	end
-
-	index = -1
+	LOG("world started")
 	calendar = NewCalendar()
-	calendar:init(4, 5, 1)
+	calendar:init(10, GROUND_LEVEL, 10, 1)
 	calendar:addUser("135yshr")
+	calendar:addUser("user1")
+	calendar:addUser("user2")
+	calendar:addUser("user3")
+	calendar:addUser("user4")
 	calendar:display()
-
-	if index == -1
-		then
-			table.insert(Calendars, calendar)
-		else
-			Calendars[index] = calendar
-	end
+	table.insert(Calendars, calendar)
 end
 
 --
