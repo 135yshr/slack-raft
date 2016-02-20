@@ -2,37 +2,22 @@ CALENDAR_GOOD = 0
 CALENDAR_FAIR = 1
 CALENDAR_BAD  = 2
 
-function NewCalendar()
-	c = {
+Calendar = {}
+
+function Calendar.new(month)
+	local c = {
 			x=0,
 			y=0,
 			z=0,
-			month=0,
+			month=month,
 			users={},
-
-			init=Calendar.init,
-			setInfos=Calendar.setInfos,
-			destroy=Calendar.destroy,
-			display=Calendar.display,
-			addUser=Calendar.addUser,
-			updateFeel=Calendar.updateFeel
 		}
-	return c
+	return setmetatable(c, {__index = Calendar})
 end
 
-Calendar = {x=0, y=0, z=0, month=0, users={}}
+function Calendar.display(self)
 
-function Calendar:init(x,y,z,month)
-	self.x = x
-	self.y = y
-	self.z = z
-	self.month = month
-	self.users = {}
-end
-
-function Calendar:display()
-
-	uc=Calendar:userCount(self.users)
+	uc=self.userCount()
 	for px = self.x-5, self.x+38 do
 		for pz = self.z-5, self.z+5 do
 			setBlock(UpdateQueue, px, self.y, pz, E_BLOCK_STONE, E_META_STONE_STONE)
@@ -64,13 +49,13 @@ function Calendar:display()
 	end
 end
 
-function Calendar:addUser(name)
+function Calendar.addUser(self, name)
 	if self.users[name] == nil then
-		self.users[name] = Calendar:userCount(self.users)
+		self.users[name] = self.userCount()
 	end
 end
 
-function Calendar:userName(users, no)
+function Calendar.userName(self, users, no)
 	for k, v in pairs(users) do
 		if v==no then
 			return k
@@ -79,7 +64,7 @@ function Calendar:userName(users, no)
 	return ""
 end
 
-function Calendar:updateFeel(name,day,feel)
+function Calendar.updateFeel(self,name,day,feel)
 	local no = self.users[name]
 	if no == nil then
 		return
@@ -96,8 +81,10 @@ function Calendar:updateFeel(name,day,feel)
 	setBlock(UpdateQueue, self.x+day+1, self.y+no+3, self.z, E_BLOCK_WOOL, blockColor)
 end
 
-function Calendar:userCount(users)
+function Calendar.userCount(self)
+	if self == nil then return 0 end
+
 	local count = 0
-	for _ in pairs(users) do count = count + 1 end
+	for _ in pairs(self.users) do count = count + 1 end
 	return count
 end
