@@ -6,9 +6,9 @@ Calendar = {}
 
 function Calendar.new(month)
 	local c = {
-			x=GROUND_MIN_X,
+			x=CONTAINER_START_X,
 			y=GROUND_LEVEL,
-			z=GROUND_MIN_X,
+			z=CONTAINER_START_Z,
 			month=month,
 			users={},
 		}
@@ -17,11 +17,7 @@ end
 
 function Calendar.display(self)
 
-	for px = self.x-5, self.x+38 do
-		for pz = self.z-5, self.z+5 do
-			setBlock(UpdateQueue, px, self.y, pz, E_BLOCK_STONE, E_META_STONE_STONE)
-		end
-	end 
+	self:addGround()
 
 	-- y = 1
 	setBlock(UpdateQueue, self.x+34, self.y+1, self.z, E_BLOCK_SIGN_POST, 8)
@@ -48,6 +44,14 @@ function Calendar.display(self)
 		setBlock(UpdateQueue, self.x, py, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
 		no=no+1
 	end
+end
+
+function Calendar.addGround(self)
+	for px = self.x-5, self.x+38 do
+		for pz = self.z-5, self.z+5 do
+			setBlock(UpdateQueue, px, self.y, pz, E_BLOCK_STONE, E_META_STONE_STONE)
+		end
+	end 
 end
 
 function Calendar.addUser(self, name)

@@ -2,8 +2,8 @@
 -- for the Docker plugin.
 
 -- X,Z positions to draw first container
-CONTAINER_START_X = 5
-CONTAINER_START_Z = 5
+CONTAINER_START_X = 10
+CONTAINER_START_Z = 10
 
 -- offset to draw next container
 CONTAINER_OFFSET_X = -6
