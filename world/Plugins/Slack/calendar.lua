@@ -38,14 +38,14 @@ function Calendar.display(self)
 
 	local no=0
 	for py = self.y+3, self.y+uc+2 do
-		setBlock(UpdateQueue, self.x, py, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
-		setBlock(UpdateQueue, self.x+1, py, self.z, E_BLOCK_WOOL, E_META_WOOL_GREEN)
-		setBlock(UpdateQueue, self.x+1, py, self.z+1, E_BLOCK_WALLSIGN, E_META_CHEST_FACING_ZP)
-		updateSign(UpdateQueue, self.x+1, py, self.z+1, "", Calendar:userName(self.users, no), "", "", 2)
-		for px=self.x+2, self.x+32 do
+		setBlock(UpdateQueue, self.x+33 , py, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
+		setBlock(UpdateQueue, self.x+32, py, self.z, E_BLOCK_WOOL, E_META_WOOL_GREEN)
+		setBlock(UpdateQueue, self.x+32, py, self.z-1, E_BLOCK_WALLSIGN, E_META_CHEST_FACING_ZM)
+		updateSign(UpdateQueue, self.x+32, py, self.z-1, "", Calendar:userName(self.users, no), "", "", 2)
+		for px=self.x+1, self.x+31 do
 			setBlock(UpdateQueue, px, py, self.z, E_BLOCK_WOOL, E_META_WOOL_LIGHTGRAY)
 		end
-		setBlock(UpdateQueue, self.x+33 , py, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
+		setBlock(UpdateQueue, self.x, py, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
 		no=no+1
 	end
 end
