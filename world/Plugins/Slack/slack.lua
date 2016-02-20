@@ -180,14 +180,21 @@ end
 function WorldStarted()
 	math.randomseed(os.time())
 	LOG("world started")
+	names = {"user4", "user3", "user2", "user1", "135yshr"}
 	calendar=Calendar.new(1)
-	calendar:addUser("user4")
-	calendar:addUser("user3")
-	calendar:addUser("user2")
-	calendar:addUser("user1")
-	calendar:addUser("135yshr")
+	for _, name in ipairs(names) do
+		calendar:addUser(name)
+	end
 	calendar:display()
 	table.insert(Calendars, calendar)
+
+	days = {1, 2, 3, 4, 5, 8, 9, 10, 12, 15, 16, 17, 18, 19}
+	math.randomseed(os.time())
+	for _, d in ipairs(days) do
+		for _, name in ipairs(names) do
+			calendar:updateFeel(name, d, math.random(3)-1)
+		end
+	end
 end
 
 --

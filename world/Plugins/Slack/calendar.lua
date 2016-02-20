@@ -81,7 +81,7 @@ function Calendar.updateFeel(self,name,day,feel)
 	elseif feel == CALENDAR_BAD then
 		blockColor = E_META_WOOL_LIGHTBLUE
 	end
-	setBlock(UpdateQueue, self.x+day+1, self.y+no+3, self.z, E_BLOCK_WOOL, blockColor)
+	setBlock(UpdateQueue, self.x+32-day, self.y+no+3, self.z, E_BLOCK_WOOL, blockColor)
 end
 
 function Calendar.userCount(self)
