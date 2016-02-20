@@ -24,10 +24,10 @@ function Calendar.display(self)
 	end 
 
 	-- y = 1
-	setBlock(UpdateQueue, self.x-1, self.y+1, self.z, E_BLOCK_SIGN_POST, E_META_CHEST_FACING_ZP)
-	updateSign(UpdateQueue, self.x-1, self.y+1, self.z, "", "current", "month", "", 2)
-	setBlock(UpdateQueue, self.x, self.y+1, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
+	setBlock(UpdateQueue, self.x+34, self.y+1, self.z, E_BLOCK_SIGN_POST, 8)
+	updateSign(UpdateQueue, self.x+34, self.y+1, self.z, "", "current", "month", "", 2)
 	setBlock(UpdateQueue, self.x+33, self.y+1, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
+	setBlock(UpdateQueue, self.x, self.y+1, self.z, E_BLOCK_STONE, E_META_STONE_STONE)
 
 	-- y = 2 and 7
 	local uc=self:userCount()
