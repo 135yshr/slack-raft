@@ -180,13 +180,14 @@ end
 function WorldStarted()
 	math.randomseed(os.time())
 	LOG("world started")
+	month=2
 	names = {"user4", "user3", "user2", "user1", "135yshr"}
-	calendar=Calendar.new(1)
+	calendar=Calendar.new(month)
 	for _, name in ipairs(names) do
 		calendar:addUser(name)
 	end
 	calendar:display()
-	table.insert(Calendars, calendar)
+	Calendars[month]=calendar
 
 	days = {1, 2, 3, 4, 5, 8, 9, 10, 12, 15, 16, 17, 18, 19}
 	math.randomseed(os.time())
@@ -275,8 +276,8 @@ function NicoCalCommand(Split, Player)
 				if Split[2] == "feel"
 				then
 					month = tonumber(Split[3])
-					name = Split[4]
-					day = tonumber(Split[5])
+					day = tonumber(Split[4])
+					name = Split[5]
 					feel = tonumber(Split[6])
 
 					cal = Calendars[month]
